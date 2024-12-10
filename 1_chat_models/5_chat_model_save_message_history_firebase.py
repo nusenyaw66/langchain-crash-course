@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from google.cloud import firestore
 from langchain_google_firestore import FirestoreChatMessageHistory
 from langchain_openai import ChatOpenAI
+from google.api_core import exceptions as api_exceptions
 
 """
 Steps to replicate this example:
@@ -17,19 +18,35 @@ Steps to replicate this example:
         - https://cloud.google.com/docs/authentication/provide-credentials-adc#local-dev
     - Set your default project to the new Firebase project you created
 5. Enable the Firestore API in the Google Cloud Console:
-    - https://console.cloud.google.com/apis/enableflow?apiid=firestore.googleapis.com&project=crewai-automation
+    - https://console.cloud.google.com/apis/enablcleareflow?apiid=firestore.googleapis.com&project=crewai-automation
 """
 
 load_dotenv()
 
 # Setup Firebase Firestore
-PROJECT_ID = "langchain-demo-abf48"
-SESSION_ID = "user_session_new"  # This could be a username or a unique ID
+PROJECT_ID = "ws-langchain-corse"
+SESSION_ID = "user_session_one"  # This could be a username or a unique ID
 COLLECTION_NAME = "chat_history"
+
+# def get_chat_messages(firestore_client):
+#     try:
+#         doc_ref = firestore_client.collection(COLLECTION_NAME).document("user_session_one")
+#         doc = doc_ref.get()
+#         # Process the document here
+#     except api_exceptions.RetryError as e:
+#         # Log the error or retry with appropriate delay
+#         print(f"Error retrieving chat messages: {e}")
+#     except api_exceptions.NotFound as e:
+#         # Handle the case where the document is not found
+#         print(f"Document not found: {e}")
 
 # Initialize Firestore Client
 print("Initializing Firestore Client...")
 client = firestore.Client(project=PROJECT_ID)
+
+# # Test Chat Message History API access
+# print("Start Firestore API test...")
+# get_chat_messages(client)
 
 # Initialize Firestore Chat Message History
 print("Initializing Firestore Chat Message History...")
