@@ -25,7 +25,7 @@ def create_vector_store():
     # Step 1: Crawl the website using FireCrawlLoader
     print("Begin crawling the website...")
     loader = FireCrawlLoader(
-        api_key=api_key, url="https://apple.com", mode="scrape")
+        api_key=api_key, url="https://www.apple.com", mode="scrape")
     docs = loader.load()
     print("Finished crawling the website.")
 
